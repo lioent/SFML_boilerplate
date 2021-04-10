@@ -53,11 +53,11 @@ int main()
 			}
 		}
 
-		player.Update(deltaTime);
-		view.setCenter(player.Position());
+		player.update(deltaTime);
+		view.setCenter(player.position());
 
 		window.clear(sf::Color(150, 150, 150));
-		player.Draw(window);
+		player.draw(window);
 		window.display();
 		window.setView(view);
 	}

@@ -18,7 +18,7 @@ Player::~Player()
 }
 
 // Actions
-void Player::Update(float deltaTime)
+void Player::update(float deltaTime)
 {
 	sf::Vector2f movement(0.0f, 0.0f);
 
@@ -44,7 +44,7 @@ void Player::Update(float deltaTime)
 	_body.setTextureRect(_animation.uvRect());
 }
 
-void Player::Draw(sf::RenderWindow& window)
+void Player::draw(sf::RenderWindow& window)
 {
 	window.draw(_body);
 }
