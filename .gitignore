@@ -55,3 +55,10 @@
 		"args": "Run: Debug"
 	},
 ]
+
+.vscode/*
+bin/*
+bin/Debug/SFML_boilerplate.exe
+gmon.out
+bin/Debug/SFML_boilerplate.exe
+bin/Debug/obj/Main.cpp.o

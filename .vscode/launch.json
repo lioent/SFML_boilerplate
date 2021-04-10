@@ -10,7 +10,7 @@
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"preLaunchTask": "Build: Debug",
-			"externalConsole": false,
+			"externalConsole": true,
 			"internalConsoleOptions": "neverOpen",
 			"setupCommands": [
 				{

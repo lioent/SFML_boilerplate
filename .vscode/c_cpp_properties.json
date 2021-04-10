@@ -51,6 +51,7 @@
 				"${workspaceFolder}/src",
 				"${workspaceFolder}/lib",
 				"${workspaceFolder}/test",
+				"${workspaceFolder}/src/Header",
 				"E:/SFML-2.5.1/include"
 			],
 			"defines": [
