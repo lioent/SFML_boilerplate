@@ -69,7 +69,4 @@
 // Macros
 #define UNUSED(x) (void)(x)
 
-// Source Headers
-#include "Header/Animation.hpp"
-
 #endif // PRECOMPILED_HEADER_HPP

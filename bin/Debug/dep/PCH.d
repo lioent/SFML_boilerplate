@@ -102,8 +102,7 @@ bin/Debug/obj/PCH.hpp.gch: src/PCH.hpp \
  E:/SFML-2.5.1/include/SFML/Network/SocketSelector.hpp \
  E:/SFML-2.5.1/include/SFML/Network/TcpListener.hpp \
  E:/SFML-2.5.1/include/SFML/Network/UdpSocket.hpp \
- src/Utility/FileSystem.hpp src/Utility/Types.hpp \
- src/Header/Animation.hpp
+ src/Utility/FileSystem.hpp src/Utility/Types.hpp
 
 E:/SFML-2.5.1/include/SFML/Audio.hpp:
 
@@ -314,5 +313,3 @@ E:/SFML-2.5.1/include/SFML/Network/UdpSocket.hpp:
 src/Utility/FileSystem.hpp:
 
 src/Utility/Types.hpp:
-
-src/Header/Animation.hpp:

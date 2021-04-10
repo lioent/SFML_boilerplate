@@ -1,5 +1,7 @@
 #include "Header/Animation.hpp"
 
+#include "math.h"
+
 Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime)
 {
 	this->_totalTime = 0.0f;
@@ -15,7 +17,7 @@ Animation::~Animation()
 {
 }
 
-void Animation::Update(int row, float deltaTime)
+void Animation::Update(int row, float deltaTime, bool faceRight)
 {
 	_currentImage.y = row;
 	_totalTime += deltaTime;
@@ -29,6 +31,16 @@ void Animation::Update(int row, float deltaTime)
 			_currentImage.x = 0;
 	}
 
-	_uvRect.left = _currentImage.x * _uvRect.width;
 	_uvRect.top = _currentImage.y * _uvRect.height;
+
+	if (faceRight)
+	{
+		_uvRect.left = _currentImage.x * _uvRect.width;
+		_uvRect.width = abs(_uvRect.width);
+	}
+	else
+	{
+		_uvRect.left = (_currentImage.x + 1) * abs(_uvRect.width);
+		_uvRect.width = -abs(_uvRect.width);
+	}
 }
