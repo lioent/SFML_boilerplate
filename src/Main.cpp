@@ -11,17 +11,19 @@ int main()
 	sf::Texture playerTexture;
 	playerTexture.loadFromFile("content/tux_from_linux.png");
 
-	sf::Vector2u textureSize = playerTexture.getSize();
-	textureSize.x /= 3;
-	textureSize.y /= 9;
+	Animation animation(&playerTexture, sf::Vector2u(3, 9), 0.3f);
 
 	sf::RectangleShape player(sf::Vector2f(100.0f, 150.0f));
 	player.setPosition(206.0f, 206.0f);
 	player.setTexture(&playerTexture);
-	player.setTextureRect(sf::IntRect(textureSize.x * 2, textureSize.y * 8, textureSize.x, textureSize.y));
+
+	float deltaTime = 0.0f;
+	sf::Clock clock;
 
 	while (window.isOpen())
 	{
+		deltaTime = clock.restart().asSeconds();
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -46,24 +48,27 @@ int main()
 			}
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-				player.move(0.0f, -0.1f);
+				player.move(0.0f, -0.5f);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-				player.move(-0.1f, 0.0f);
+				player.move(-0.5f, 0.0f);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-				player.move(0.0f, 0.1f);
+				player.move(0.0f, 0.5f);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-				player.move(0.1f, 0.0f);
+				player.move(0.5f, 0.0f);
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
 				sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
 				player.setPosition(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y));
 			}
-
-			window.clear();
-			window.draw(player);
-			window.display();
 		}
+
+		animation.Update(0, deltaTime);
+		player.setTextureRect(animation.uvRect());
+
+		window.clear(sf::Color(150, 150, 150));
+		window.draw(player);
+		window.display();
 	}
 
 	return 0;

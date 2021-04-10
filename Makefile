@@ -63,12 +63,13 @@ PRODUCTION_FOLDER_RESOURCES := $(PRODUCTION_FOLDER)
 # Library directories (separated by spaces)
 LIB_DIRS?=
 INCLUDE_DIRS?=
+
 # Link libraries (separated by spaces)
 LINK_LIBRARIES?=
 
 # Precompiled header filename (no extension)
 # This file will be excluded from Rebuild, but if the bin/(build) directory is removed, it will be as well.
-PRECOMPILED_HEADER?=
+PRECOMPILED_HEADER=PCH
 
 # Build-specific preprocessor macros
 BUILD_MACROS?=
