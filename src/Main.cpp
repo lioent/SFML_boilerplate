@@ -1,5 +1,8 @@
+#include "Header/Collider.hpp"
+#include "Header/Platform.hpp"
 #include "Header/Player.hpp"
 #include "Platform/Platform.hpp"
+#include <vector>
 
 static const float VIEW_WIDTH = 512.0f;
 static const float VIEW_HEIGHT = 512.0f;
@@ -15,7 +18,12 @@ int main()
 
 	sf::Texture playerTexture;
 	playerTexture.loadFromFile("content/tux_from_linux.png");
-	Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f, 300.0f);
+	Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f, 300.0f, 200.0f);
+
+	std::vector<Platform> platforms;
+	platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
+	platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
+	platforms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
 
 	float deltaTime = 0.0f;
 	sf::Clock clock;
@@ -23,6 +31,8 @@ int main()
 	while (window.isOpen())
 	{
 		deltaTime = clock.restart().asSeconds();
+		if (deltaTime > 1.0f / 30.0f)
+			deltaTime = 1.0f / 30.0f;
 
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -54,10 +64,23 @@ int main()
 		}
 
 		player.update(deltaTime);
+
+		sf::Vector2f direction;
+
+		for (Platform& platform : platforms)
+		{
+			Collider playerCollider = player.collider();
+			if (platform.collider().checkCollision(playerCollider, direction, 1.0f))
+				player.onCollision(direction);
+		}
+
 		view.setCenter(player.position());
 
 		window.clear(sf::Color(150, 150, 150));
 		player.draw(window);
+		for (Platform& platform : platforms)
+			platform.draw(window);
+
 		window.display();
 		window.setView(view);
 	}
